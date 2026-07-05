@@ -33,9 +33,12 @@ function HomePage({ language, onToggleLanguage }) {
 
 function MenuPage({ language, onToggleLanguage }) {
   return (
-    <div className="min-h-screen bg-cream text-espresso">
-      <Header language={language} onToggleLanguage={onToggleLanguage} />
-      <MenuComingSoon language={language} />
+    <div className="min-h-screen bg-cream text-espresso flex flex-col justify-between">
+      <div>
+        <Header language={language} onToggleLanguage={onToggleLanguage} />
+        <MenuComingSoon language={language} />
+      </div>
+      <Footer language={language} />
     </div>
   );
 }

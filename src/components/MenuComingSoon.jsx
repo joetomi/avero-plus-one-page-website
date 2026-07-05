@@ -7,29 +7,38 @@ export default function MenuComingSoon({ language }) {
   const isArabic = language === "ar";
 
   return (
-    <main className="flex min-h-screen items-center bg-charcoal px-5 pb-12 pt-28 text-ivory sm:px-7">
+    <main className="flex min-h-[70vh] items-center bg-cream px-5 py-16 text-espresso sm:px-7">
       <motion.section
         dir={isArabic ? "rtl" : "ltr"}
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto w-full max-w-3xl"
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto w-full max-w-2xl text-center flex flex-col items-center justify-center"
       >
-        <div className="mb-7 inline-flex h-12 w-12 items-center justify-center rounded-[8px] bg-brass text-charcoal">
-          <Menu size={24} aria-hidden="true" />
+        {/* Emblem circular logo instead of default icon to maintain premium branding */}
+        <div className="mb-6 h-24 w-24 rounded-full border border-coffee/10 bg-ivory p-1 shadow-soft overflow-hidden select-none pointer-events-none">
+          <img
+            src="/assets/emblem.png"
+            alt="Avero logo"
+            className="h-full w-full object-contain"
+          />
         </div>
+
         <p className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-brass">
           {copy.eyebrow}
         </p>
-        <h1 className={`text-5xl leading-tight sm:text-7xl ${isArabic ? "font-body font-bold" : "font-display"}`}>
+
+        <h1 className={`text-4xl sm:text-5xl leading-tight text-espresso ${isArabic ? "font-body font-bold" : "font-display"}`}>
           {copy.title}
         </h1>
-        <p className="mt-4 text-2xl font-semibold text-cream/82">
+
+        <p className="mt-4 text-lg font-semibold text-coffee/80">
           {copy.subtitle}
         </p>
+
         <a
           href="/"
-          className="mt-9 inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] border border-ivory/24 px-5 text-sm font-bold text-ivory transition hover:bg-ivory/10"
+          className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-[8px] bg-espresso px-6 text-sm font-bold text-ivory shadow-soft transition hover:bg-charcoal active:scale-[0.98]"
         >
           {isArabic ? <ArrowRight size={18} aria-hidden="true" /> : <ArrowLeft size={18} aria-hidden="true" />}
           {copy.back}
