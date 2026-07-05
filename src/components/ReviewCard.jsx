@@ -50,6 +50,11 @@ export default function ReviewCard({ review, language }) {
           <h3 className="truncate text-sm font-bold text-[#6B3518]">
             {review.name}
           </h3>
+          {review.reviewerInfo && (
+            <p className="mt-0.5 truncate text-[0.68rem] text-[#9A4F22]/85 font-medium">
+              {review.reviewerInfo}
+            </p>
+          )}
           <p className="mt-1 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-[#9A4F22]">
             {review.source || "Google Review"}
           </p>
@@ -88,16 +93,21 @@ export default function ReviewCard({ review, language }) {
       {images.length > 0 && (
         <div className="mt-4 grid grid-cols-2 gap-2">
           {images.map((image, index) => (
-            <img
+            <div
               key={image}
-              src={image}
-              alt={`${review.name} review photo ${index + 1}`}
-              loading="lazy"
-              onError={(event) => {
-                event.currentTarget.style.display = "none";
-              }}
-              className="aspect-[1.15] w-full rounded-[8px] border border-[#9A4F22]/15 object-cover"
-            />
+              className="overflow-hidden rounded-[8px] border border-[#9A4F22]/15 aspect-[1.15] w-full"
+            >
+              <img
+                src={image}
+                alt={`${review.name} review photo ${index + 1}`}
+                loading="lazy"
+                onError={(event) => {
+                  const parent = event.currentTarget.parentElement;
+                  if (parent) parent.style.display = "none";
+                }}
+                className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+            </div>
           ))}
         </div>
       )}
