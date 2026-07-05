@@ -42,6 +42,18 @@ export const restaurantData = {
         eyebrow: "Gallery",
         title: "Avero moments",
       },
+      reviews: {
+        eyebrow: "Guest Reviews",
+        title: "Guest Reviews",
+        subtitle: "Real experiences from Avero Plus visitors",
+        loading: "Loading Google reviews...",
+        empty: "Google reviews are temporarily unavailable.",
+        notConfigured: "Google reviews are ready to connect.",
+        fallback: "TODO: Add the real Google Maps reviews manually. No fake reviews are displayed.",
+        previous: "Previous review",
+        next: "Next review",
+        page: "Review page",
+      },
       contact: {
         eyebrow: "Contact",
         title: "Visit Avero Plus",

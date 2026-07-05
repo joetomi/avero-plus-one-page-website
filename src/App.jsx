@@ -5,6 +5,7 @@ import Hero from "./components/Hero.jsx";
 import About from "./components/About.jsx";
 import Highlights from "./components/Highlights.jsx";
 import Gallery from "./components/Gallery.jsx";
+import Reviews from "./components/Reviews.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import MenuComingSoon from "./components/MenuComingSoon.jsx";
@@ -24,6 +25,7 @@ function HomePage({ language, onToggleLanguage }) {
         <About language={language} />
         <Highlights language={language} />
         <Gallery language={language} />
+        <Reviews language={language} />
         <Contact language={language} />
       </main>
       <Footer language={language} />
