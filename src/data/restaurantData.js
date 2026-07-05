@@ -52,7 +52,7 @@ export const restaurantData = {
           hours: "Opening Hours",
         },
         location: "Misurata, Libya",
-        hours: "Sun-Thu & Sat: 10 AM-9 PM | Fri: 5-9 PM",
+        hours: "Sat-Thu: 10 AM-9 PM | Fri: 5-9 PM",
         buttons: {
           call: "Call Now",
           facebook: "Facebook Page",
@@ -120,7 +120,7 @@ export const restaurantData = {
           hours: "ساعات العمل",
         },
         location: "مصراتة، ليبيا",
-        hours: "الأحد-الخميس والسبت: 10ص-9م | الجمعة: 5-9م",
+        hours: "السبت-الخميس: 10ص-9م | الجمعة: 5-9م",
         buttons: {
           call: "اتصل الآن",
           facebook: "صفحة فيسبوك",
