@@ -1,4 +1,5 @@
-import { Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Star, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const formatDate = (value, language) => {
   if (!value) return "";
@@ -14,6 +15,7 @@ const formatDate = (value, language) => {
 };
 
 export default function ReviewCard({ review, language }) {
+  const [activePhotoIndex, setActivePhotoIndex] = useState(null);
   const isArabic = language === "ar";
   const rating = Math.max(0, Math.min(5, Number(review.rating) || 0));
   const date = formatDate(review.date, language);
@@ -23,6 +25,21 @@ export default function ReviewCard({ review, language }) {
     service: isArabic ? "الخدمة" : "Service",
     atmosphere: isArabic ? "الأجواء" : "Atmosphere",
   };
+
+  useEffect(() => {
+    if (activePhotoIndex === null) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setActivePhotoIndex(null);
+      } else if (e.key === "ArrowLeft") {
+        setActivePhotoIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+      } else if (e.key === "ArrowRight") {
+        setActivePhotoIndex((prev) => (prev + 1) % images.length);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activePhotoIndex, images.length]);
 
   return (
     <article
@@ -95,7 +112,8 @@ export default function ReviewCard({ review, language }) {
           {images.map((image, index) => (
             <div
               key={image}
-              className="overflow-hidden rounded-[8px] border border-[#9A4F22]/15 aspect-[1.15] w-full"
+              className="overflow-hidden rounded-[8px] border border-[#9A4F22]/15 aspect-[1.15] w-full cursor-pointer"
+              onClick={() => setActivePhotoIndex(index)}
             >
               <img
                 src={image}
@@ -116,6 +134,71 @@ export default function ReviewCard({ review, language }) {
         <p className="mt-4 text-xs font-semibold text-[#9A4F22]">
           {date}
         </p>
+      )}
+
+      {activePhotoIndex !== null && (
+        <div 
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+          onClick={() => setActivePhotoIndex(null)}
+        >
+          <div 
+            className="relative w-full max-w-md bg-[#F7EFE1] p-4 rounded-[12px] border border-[#9A4F22]/20 shadow-xl flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+            dir={isArabic ? "rtl" : "ltr"}
+          >
+            {/* Header / Close button */}
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs font-bold text-[#6B3518]">
+                {review.name} - {isArabic ? "صور التقييم" : "Review Photo"} ({activePhotoIndex + 1}/{images.length})
+              </span>
+              <button
+                type="button"
+                onClick={() => setActivePhotoIndex(null)}
+                className="grid h-8 w-8 place-items-center rounded-full bg-[#F4E8CF] text-[#6B3518] hover:bg-[#6B3518] hover:text-[#F7EFE1] transition duration-200"
+                aria-label="Close"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            {/* Image display */}
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[8px] border border-[#9A4F22]/10 bg-[#F4E8CF] flex items-center justify-center">
+              <img
+                src={images[activePhotoIndex]}
+                alt={`${review.name} review photo enlarged`}
+                className="max-h-full max-w-full object-contain select-none"
+              />
+
+              {/* Navigation arrows */}
+              {images.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActivePhotoIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+                    }}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-[#F7EFE1]/90 text-[#6B3518] hover:bg-[#6B3518] hover:text-[#F7EFE1] transition shadow active:scale-95"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActivePhotoIndex((prev) => (prev + 1) % images.length);
+                    }}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 grid h-9 w-9 place-items-center rounded-full bg-[#F7EFE1]/90 text-[#6B3518] hover:bg-[#6B3518] hover:text-[#F7EFE1] transition shadow active:scale-95"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </article>
   );
