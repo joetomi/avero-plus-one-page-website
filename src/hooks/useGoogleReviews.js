@@ -1,11 +1,11 @@
-import { reviewsFallback } from "../data/reviewsFallback.js";
+import { reviews } from "../data/reviewsData.js";
 
 export function useGoogleReviews() {
   return {
-    reviews: reviewsFallback,
+    reviews,
     loading: false,
     error: "",
     fromCache: false,
-    configured: reviewsFallback.length > 0,
+    configured: reviews.length > 0,
   };
 }

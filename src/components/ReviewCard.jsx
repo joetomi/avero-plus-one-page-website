@@ -4,7 +4,7 @@ const formatDate = (value, language) => {
   if (!value) return "";
 
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
+  if (Number.isNaN(date.getTime())) return value;
 
   return new Intl.DateTimeFormat(language === "ar" ? "ar-LY" : "en", {
     year: "numeric",
@@ -17,6 +17,12 @@ export default function ReviewCard({ review, language }) {
   const isArabic = language === "ar";
   const rating = Math.max(0, Math.min(5, Number(review.rating) || 0));
   const date = formatDate(review.date, language);
+  const images = Array.isArray(review.images) ? review.images.filter(Boolean) : [];
+  const detailLabels = {
+    food: isArabic ? "الطعام" : "Food",
+    service: isArabic ? "الخدمة" : "Service",
+    atmosphere: isArabic ? "الأجواء" : "Atmosphere",
+  };
 
   return (
     <article
@@ -65,6 +71,36 @@ export default function ReviewCard({ review, language }) {
       <p className="mt-4 line-clamp-5 min-h-[7.5rem] text-sm leading-6 text-[#6B3518]">
         {review.text}
       </p>
+
+      {review.details && (
+        <div className="mt-4 grid grid-cols-3 gap-2">
+          {Object.entries(detailLabels).map(([key, label]) => (
+            review.details[key] ? (
+              <div key={key} className="rounded-[8px] bg-[#F4E8CF] px-2 py-2 text-center">
+                <p className="text-[0.68rem] font-bold text-[#9A4F22]">{label}</p>
+                <p className="mt-1 text-xs font-bold text-[#6B3518]">{review.details[key]}/5</p>
+              </div>
+            ) : null
+          ))}
+        </div>
+      )}
+
+      {images.length > 0 && (
+        <div className="mt-4 grid grid-cols-2 gap-2">
+          {images.map((image, index) => (
+            <img
+              key={image}
+              src={image}
+              alt={`${review.name} review photo ${index + 1}`}
+              loading="lazy"
+              onError={(event) => {
+                event.currentTarget.style.display = "none";
+              }}
+              className="aspect-[1.15] w-full rounded-[8px] border border-[#9A4F22]/15 object-cover"
+            />
+          ))}
+        </div>
+      )}
 
       {date && (
         <p className="mt-4 text-xs font-semibold text-[#9A4F22]">
