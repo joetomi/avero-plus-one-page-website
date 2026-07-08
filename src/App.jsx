@@ -8,7 +8,7 @@ import Gallery from "./components/Gallery.jsx";
 import Reviews from "./components/Reviews.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
-import MenuComingSoon from "./components/MenuComingSoon.jsx";
+import Menu from "./pages/Menu.jsx";
 import LoadingScreen from "./components/LoadingScreen.jsx";
 
 const getInitialLanguage = () => {
@@ -38,7 +38,7 @@ function MenuPage({ language, onToggleLanguage }) {
     <div className="min-h-screen bg-cream text-espresso flex flex-col justify-between">
       <div>
         <Header language={language} onToggleLanguage={onToggleLanguage} />
-        <MenuComingSoon language={language} />
+        <Menu language={language} />
       </div>
       <Footer language={language} />
     </div>
