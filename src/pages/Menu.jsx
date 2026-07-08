@@ -6,7 +6,7 @@ import CategoryPills from "../components/menu/CategoryPills.jsx";
 import MenuPdfActions from "../components/menu/MenuPdfActions.jsx";
 import MenuCard from "../components/menu/MenuCard.jsx";
 import SummerDrinkCard from "../components/menu/SummerDrinkCard.jsx";
-import { menuCopy, menuItems, menuSections } from "../data/menuData.js";
+import { menuItems, menuSections } from "../data/menuData.js";
 
 const listVariants = {
   hidden: {},
@@ -17,17 +17,20 @@ export default function Menu({ language }) {
   const [activeSection, setActiveSection] = useState("summer-drinks");
   const activeSectionData = menuSections.find((section) => section.id === activeSection) || menuSections[0];
   const [activeCategory, setActiveCategory] = useState(activeSectionData.categories[0].id);
-  const copy = menuCopy[language];
   const isArabic = language === "ar";
 
   useEffect(() => {
     setActiveCategory(activeSectionData.categories[0].id);
   }, [activeSectionData]);
 
-  const visibleItems = useMemo(
-    () => menuItems.filter((item) => item.section === activeSection && item.category === activeCategory),
-    [activeCategory, activeSection],
+  const sectionItems = useMemo(
+    () => menuItems.filter((item) => item.section === activeSection),
+    [activeSection],
   );
+  const visibleItems = useMemo(() => {
+    const categoryItems = sectionItems.filter((item) => item.category === activeCategory);
+    return categoryItems.length ? categoryItems : sectionItems;
+  }, [activeCategory, sectionItems]);
 
   const isSummer = activeSection === "summer-drinks";
 
@@ -85,15 +88,6 @@ export default function Menu({ language }) {
               ))}
             </motion.div>
           </AnimatePresence>
-
-          {!visibleItems.length && (
-            <div className={`mt-6 rounded-[12px] border border-mocha/15 bg-ivory p-5 shadow-[0_12px_34px_rgba(35,27,23,0.06)] ${
-              isArabic ? "text-right" : ""
-            }`}>
-              <p className="text-base font-bold text-espresso">{copy.emptyTitle}</p>
-              <p className="mt-2 text-sm leading-6 text-coffee">{copy.emptyText}</p>
-            </div>
-          )}
         </div>
       </section>
     </main>
