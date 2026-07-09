@@ -41,11 +41,11 @@ export default function MenuImageViewer({ menu, language, direction }) {
       exit="exit"
       variants={variants}
       style={{ perspective: 1200 }}
-      className="mx-auto w-full max-w-[960px] overflow-hidden"
+      className="mx-auto w-full max-w-[960px] overflow-hidden px-4 sm:px-0"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      <div className={`mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between ${isArabic ? "text-right" : ""}`}>
-        <div>
+      <div className="mb-4 flex flex-col items-center text-center gap-3 sm:flex-row sm:items-center sm:justify-between sm:text-start">
+        <div className="flex flex-col items-center sm:items-start">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brass">
             Avero Plus
           </p>
@@ -54,12 +54,12 @@ export default function MenuImageViewer({ menu, language, direction }) {
           </h2>
         </div>
         {menu.pdf && (
-          <div className="grid gap-2 sm:flex">
+          <div className="w-full sm:w-auto flex justify-center">
             <a
               href={menu.pdf}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-11 items-center justify-center rounded-[8px] bg-brass px-4 text-sm font-bold text-charcoal shadow-soft transition hover:scale-[1.01] active:scale-[0.98]"
+              className="inline-flex min-h-11 w-full sm:w-auto items-center justify-center rounded-[8px] bg-brass px-6 text-sm font-bold text-charcoal shadow-soft transition hover:scale-[1.01] active:scale-[0.98]"
             >
               {isArabic ? "عرض PDF الأصلي" : "View Original PDF"}
             </a>

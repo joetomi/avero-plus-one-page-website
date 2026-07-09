@@ -18,7 +18,6 @@ export default function Menu({ language }) {
     const oldIndex = menuImageData.findIndex((m) => m.id === activeMenuId);
     setNavDirection(newIndex > oldIndex ? 1 : -1);
     setActiveMenuId(menuId);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Touch handlers for swipe gestures on mobile
