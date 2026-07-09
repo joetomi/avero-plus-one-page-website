@@ -1,17 +1,47 @@
 import { motion } from "framer-motion";
 
-export default function MenuImageViewer({ menu, language }) {
+export default function MenuImageViewer({ menu, language, direction }) {
   const isArabic = language === "ar";
   const title = isArabic ? menu.labelAr : menu.labelEn;
+
+  const variants = {
+    initial: {
+      opacity: 0,
+      rotateY: direction > 0 ? 30 : -30,
+      x: direction > 0 ? 100 : -100,
+      scale: 0.96,
+    },
+    animate: {
+      opacity: 1,
+      rotateY: 0,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.45,
+        ease: [0.16, 1, 0.3, 1],
+      }
+    },
+    exit: {
+      opacity: 0,
+      rotateY: direction > 0 ? -30 : 30,
+      x: direction > 0 ? -100 : 100,
+      scale: 0.96,
+      transition: {
+        duration: 0.35,
+        ease: [0.16, 1, 0.3, 1],
+      }
+    }
+  };
 
   return (
     <motion.section
       key={menu.id}
-      initial={{ opacity: 0, scale: 0.97, y: 16 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.97, y: -12 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className="mx-auto w-full max-w-[960px]"
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      variants={variants}
+      style={{ perspective: 1200 }}
+      className="mx-auto w-full max-w-[960px] overflow-hidden"
       dir={isArabic ? "rtl" : "ltr"}
     >
       <div className={`mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between ${isArabic ? "text-right" : ""}`}>

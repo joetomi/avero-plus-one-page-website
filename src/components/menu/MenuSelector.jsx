@@ -13,30 +13,36 @@ export default function MenuSelector({ menus, activeId, onSelect, language }) {
         {menus.map((menu) => {
           const isActive = menu.id === activeId;
           return (
-            <motion.button
+            <button
               key={menu.id}
               type="button"
               onClick={() => onSelect(menu.id)}
-              whileTap={{ scale: 0.96 }}
-              className={`relative flex h-[3.1rem] flex-col items-center justify-center rounded-[11px] px-1 py-1 text-center transition duration-200 ${
-                isActive
-                  ? "bg-espresso text-ivory shadow-[0_4px_12px_rgba(35,27,23,0.16)]"
-                  : "text-espresso/75 hover:bg-espresso/5"
-              }`}
+              className="relative flex h-[3.1rem] flex-col items-center justify-center rounded-[11px] px-1 py-1 text-center transition-colors duration-200 outline-none select-none"
             >
+              {isActive && (
+                <motion.div
+                  layoutId="activeMenuTab"
+                  className="absolute inset-0 bg-espresso rounded-[11px] shadow-[0_4px_12px_rgba(35,27,23,0.16)] z-0"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
               {menu.badgeAr && (
                 <span
-                  className={`absolute -top-2 left-1/2 -translate-x-1/2 rounded-[6px] px-1.5 py-0.5 text-[0.58rem] font-bold leading-none shadow-[0_2px_8px_rgba(0,0,0,0.06)] ${
+                  className={`absolute -top-2 left-1/2 -translate-x-1/2 rounded-[6px] px-1.5 py-0.5 text-[0.58rem] font-bold leading-none shadow-[0_2px_8px_rgba(0,0,0,0.06)] z-20 transition-colors duration-200 ${
                     isActive ? "bg-brass text-charcoal" : "bg-brass/25 text-coffee"
                   }`}
                 >
                   {language === "ar" ? menu.badgeAr : "New"}
                 </span>
               )}
-              <span className={`block text-[0.72rem] font-bold leading-tight xs:text-[0.76rem] sm:text-xs md:text-[0.82rem] ${isArabic ? "font-body" : "font-display"}`}>
+              <span
+                className={`block text-[0.72rem] font-bold leading-tight xs:text-[0.76rem] sm:text-xs md:text-[0.82rem] z-10 relative transition-colors duration-200 ${
+                  isActive ? "text-ivory" : "text-espresso/75"
+                } ${isArabic ? "font-body" : "font-display"}`}
+              >
                 {language === "ar" ? menu.labelAr : menu.labelEn}
               </span>
-            </motion.button>
+            </button>
           );
         })}
       </div>
