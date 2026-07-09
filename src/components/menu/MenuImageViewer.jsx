@@ -33,13 +33,6 @@ export default function MenuImageViewer({ menu, language }) {
             >
               {isArabic ? "عرض PDF الأصلي" : "View Original PDF"}
             </a>
-            <a
-              href={menu.pdf}
-              download
-              className="inline-flex min-h-11 items-center justify-center rounded-[8px] border border-mocha/20 bg-ivory px-4 text-sm font-bold text-espresso transition hover:border-brass active:scale-[0.98]"
-            >
-              {isArabic ? "تحميل PDF" : "Download PDF"}
-            </a>
           </div>
         )}
       </div>
