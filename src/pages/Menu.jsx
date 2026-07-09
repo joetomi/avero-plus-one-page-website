@@ -6,7 +6,7 @@ import MenuSelector from "../components/menu/MenuSelector.jsx";
 import { menuImageData } from "../data/menuImageData.js";
 
 export default function Menu({ language }) {
-  const [activeMenuId, setActiveMenuId] = useState("summer");
+  const [activeMenuId, setActiveMenuId] = useState("coffee");
   const activeMenu = menuImageData.find((menu) => menu.id === activeMenuId) || menuImageData[0];
 
   const handleSelect = (menuId) => {
