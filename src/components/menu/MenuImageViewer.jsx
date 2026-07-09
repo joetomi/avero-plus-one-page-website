@@ -63,8 +63,8 @@ export default function MenuImageViewer({ menu, language, direction }) {
               src={page}
               alt={`${title} page ${index + 1}`}
               className="m-0 block h-auto w-full max-w-full border-0 p-0"
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === 0 ? "high" : "auto"}
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
               draggable="false"
             />
