@@ -17,7 +17,7 @@ export default function SectionReveal({ children, className = "", id }) {
       variants={reveal}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.22 }}
+      viewport={{ once: true, amount: 0.05 }}
     >
       {children}
     </motion.section>

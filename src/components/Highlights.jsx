@@ -50,7 +50,7 @@ export default function Highlights({ language }) {
           variants={list}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.24 }}
+          viewport={{ once: true, amount: 0.05 }}
           className="grid gap-3 md:grid-cols-2 lg:grid-cols-4"
         >
           {restaurantData.highlights.map((highlight, index) => {

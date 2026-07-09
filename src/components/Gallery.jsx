@@ -42,7 +42,7 @@ export default function Gallery({ language }) {
           variants={list}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.05 }}
           className="grid grid-cols-2 gap-3 sm:grid-cols-4"
         >
           {restaurantData.gallery.map((item, index) => {
