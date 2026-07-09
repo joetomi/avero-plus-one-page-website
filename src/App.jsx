@@ -10,6 +10,7 @@ import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import Menu from "./pages/Menu.jsx";
 import LoadingScreen from "./components/LoadingScreen.jsx";
+import { preloadImages } from "./utils/preloadImages.js";
 
 const getInitialLanguage = () => {
   const savedLanguage = window.sessionStorage.getItem("avero-language");
@@ -57,6 +58,21 @@ export default function App() {
     document.documentElement.lang = language;
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
   }, [language]);
+
+  // Background preload of secondary assets
+  useEffect(() => {
+    preloadImages([
+      "/assets/pasta-2.jpg",
+      "/assets/coffee-croissant.jpg",
+      "/assets/meeting-room-1.jpg",
+      "/assets/event-room.jpg",
+      "/assets/coffee-banner.png",
+      "/assets/menu-covers/summer.jpg",
+      "/assets/menu-covers/food.jpg",
+      "/assets/menu-covers/coffee.jpg",
+      "/assets/menu-covers/breakfast.jpg"
+    ]);
+  }, []);
 
   // 5-second loading timer and scroll lock
   useEffect(() => {

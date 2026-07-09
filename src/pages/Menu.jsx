@@ -4,6 +4,7 @@ import MenuHero from "../components/menu/MenuHero.jsx";
 import MenuImageViewer from "../components/menu/MenuImageViewer.jsx";
 import MenuSelector from "../components/menu/MenuSelector.jsx";
 import { menuImageData } from "../data/menuImageData.js";
+import { preloadImages } from "../utils/preloadImages.js";
 
 export default function Menu({ language }) {
   const [selectedMenuId, setSelectedMenuId] = useState(null);
@@ -18,6 +19,22 @@ export default function Menu({ language }) {
     breakfast: 0
   });
 
+  // Route-based preload when the menu page mounts
+  useEffect(() => {
+    // 1. Load the 4 cover images immediately
+    preloadImages(menuImageData.map((m) => m.cover), { immediate: true });
+
+    // 2. Preload Summer Drinks Page 1 immediately (default/new menu)
+    const summerMenu = menuImageData.find((m) => m.id === "summer");
+    if (summerMenu && summerMenu.pages.length > 0) {
+      preloadImages([summerMenu.pages[0]], { immediate: true });
+    }
+
+    // 3. Preload all remaining menu pages in the background with limited concurrency
+    const allPages = menuImageData.flatMap((m) => m.pages);
+    preloadImages(allPages, { concurrency: 2 });
+  }, []);
+
   const handleSelect = (menuId) => {
     if (selectedMenuId) {
       // Save scroll position of current active menu
@@ -28,6 +45,11 @@ export default function Menu({ language }) {
     const oldIndex = menuImageData.findIndex((m) => m.id === selectedMenuId);
     setNavDirection(newIndex > oldIndex ? 1 : -1);
     setSelectedMenuId(menuId);
+  };
+
+  // Preload all pages of a hovered/touched menu immediately
+  const handleCardHover = (menu) => {
+    preloadImages(menu.pages, { immediate: true });
   };
 
   // Restore scroll position when switching menus
@@ -54,6 +76,8 @@ export default function Menu({ language }) {
               <button
                 key={menu.id}
                 onClick={() => handleSelect(menu.id)}
+                onMouseEnter={() => handleCardHover(menu)}
+                onTouchStart={() => handleCardHover(menu)}
                 className="group relative flex flex-col items-center justify-between rounded-[16px] border border-mocha/12 bg-ivory p-4 shadow-sm hover:shadow-soft hover:border-brass/45 transition-all duration-300 w-full outline-none select-none"
               >
                 {menu.id === "summer" && (
@@ -67,8 +91,11 @@ export default function Menu({ language }) {
                   <img
                     src={menu.cover}
                     alt={menu.labelEn}
+                    width={menu.id === "food" ? 819 : 1024}
+                    height={1024}
                     className="h-full w-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                   />
                 </div>
 

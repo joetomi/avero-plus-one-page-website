@@ -14,8 +14,12 @@ export default function Hero({ language }) {
         <img
           src={restaurantData.images.hero}
           alt="Avero Plus restaurant exterior"
+          width={2048}
+          height={1366}
           className="h-full w-full object-cover object-center"
           loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
       </motion.div>
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,20,18,0.24),rgba(23,20,18,0.82))]" />

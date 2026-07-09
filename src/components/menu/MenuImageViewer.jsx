@@ -1,8 +1,70 @@
 import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+
+function LazyMenuImage({ src, alt, width, height }) {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      setIsIntersecting(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px" }
+    );
+
+    const el = ref.current;
+    if (el) {
+      observer.observe(el);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="w-full bg-ivory/10"
+      style={{ aspectRatio: `${width} / ${height}` }}
+    >
+      {isIntersecting && (
+        <img
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading="lazy"
+          decoding="async"
+          className="m-0 block h-auto w-full max-w-full border-0 p-0"
+          draggable="false"
+        />
+      )}
+    </div>
+  );
+}
 
 export default function MenuImageViewer({ menu, language, direction }) {
   const isArabic = language === "ar";
   const title = isArabic ? menu.labelAr : menu.labelEn;
+
+  let imgWidth = 1890;
+  let imgHeight = 3542;
+
+  if (menu.id === "breakfast") {
+    imgWidth = 2305;
+    imgHeight = 4320;
+  } else if (menu.id === "summer") {
+    imgWidth = 3344;
+    imgHeight = 5012;
+  }
 
   const variants = {
     initial: {
@@ -57,18 +119,32 @@ export default function MenuImageViewer({ menu, language, direction }) {
 
       <div className="overflow-hidden rounded-[12px] bg-ivory shadow-soft">
         <div className="flex flex-col gap-0 leading-[0]">
-          {menu.pages.map((page, index) => (
-            <img
-              key={page}
-              src={page}
-              alt={`${title} page ${index + 1}`}
-              className="m-0 block h-auto w-full max-w-full border-0 p-0"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              draggable="false"
-            />
-          ))}
+          {menu.pages.map((page, index) => {
+            const isFirst = index === 0;
+            return isFirst ? (
+              <img
+                key={page}
+                src={page}
+                alt={`${title} page ${index + 1}`}
+                width={imgWidth}
+                height={imgHeight}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                className="m-0 block h-auto w-full max-w-full border-0 p-0"
+                style={{ aspectRatio: `${imgWidth} / ${imgHeight}` }}
+                draggable="false"
+              />
+            ) : (
+              <LazyMenuImage
+                key={page}
+                src={page}
+                alt={`${title} page ${index + 1}`}
+                width={imgWidth}
+                height={imgHeight}
+              />
+            );
+          })}
         </div>
       </div>
     </motion.section>

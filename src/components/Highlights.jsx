@@ -55,6 +55,10 @@ export default function Highlights({ language }) {
         >
           {restaurantData.highlights.map((highlight, index) => {
             const Icon = icons[index] || Sparkles;
+            const dims = index === 0 ? { w: 2160, h: 2160 } 
+                       : index === 1 ? { w: 3080, h: 4096 } 
+                       : index === 2 ? { w: 1440, h: 1800 } 
+                       : { w: 2048, h: 2048 };
             return (
               <motion.article
                 key={highlight.title.en}
@@ -66,7 +70,10 @@ export default function Highlights({ language }) {
                   <img
                     src={highlight.image}
                     alt={highlight.title[language]}
+                    width={dims.w}
+                    height={dims.h}
                     loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition duration-700 hover:scale-105"
                   />
                   <div className={`${isArabic ? "right-3" : "left-3"} absolute top-3 grid h-10 w-10 place-items-center rounded-[8px] bg-ivory/92 text-coffee shadow-soft`}>
