@@ -24,7 +24,7 @@ export default function Menu({ language }) {
         language={language}
       />
 
-      <div className="px-0 py-6 sm:px-7 sm:py-9">
+      <div className="px-0 pt-6 pb-28 sm:px-7 sm:pt-9 sm:pb-32">
         <AnimatePresence mode="wait">
           <MenuImageViewer key={activeMenu.id} menu={activeMenu} language={language} />
         </AnimatePresence>

@@ -4,8 +4,12 @@ export default function MenuSelector({ menus, activeId, onSelect, language }) {
   const isArabic = language === "ar";
 
   return (
-    <div className="sticky top-[74px] z-30 border-y border-mocha/10 bg-cream/95 px-4 py-3 backdrop-blur-xl sm:px-7">
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-2 md:grid-cols-4">
+    <div
+      className="fixed bottom-0 left-0 right-0 z-40 border-t border-mocha/10 bg-cream/95 px-3 pt-2.5 backdrop-blur-xl shadow-[0_-8px_30px_rgba(35,27,23,0.12)]"
+      dir={isArabic ? "rtl" : "ltr"}
+      style={{ paddingBottom: "calc(10px + env(safe-area-inset-bottom, 0px))" }}
+    >
+      <div className="mx-auto grid max-w-2xl grid-cols-4 gap-1.5 sm:gap-2">
         {menus.map((menu) => {
           const isActive = menu.id === activeId;
           return (
@@ -13,31 +17,25 @@ export default function MenuSelector({ menus, activeId, onSelect, language }) {
               key={menu.id}
               type="button"
               onClick={() => onSelect(menu.id)}
-              whileTap={{ scale: 0.98 }}
-              className={`relative min-h-[4.2rem] overflow-hidden rounded-[12px] border px-3 py-3 text-start transition ${
+              whileTap={{ scale: 0.96 }}
+              className={`relative flex h-[3.4rem] flex-col items-center justify-center rounded-[10px] border px-1 py-1.5 text-center transition duration-200 ${
                 isActive
                   ? "border-brass bg-espresso text-ivory shadow-soft"
-                  : "border-mocha/15 bg-ivory text-espresso hover:border-brass/60"
-              } ${isArabic ? "text-right" : "text-left"}`}
-              dir={isArabic ? "rtl" : "ltr"}
+                  : "border-mocha/15 bg-ivory text-espresso hover:border-brass/40"
+              }`}
             >
               {menu.badgeAr && (
                 <span
-                  className={`mb-1 inline-flex rounded-[8px] px-2 py-0.5 text-[0.68rem] font-bold ${
-                    isActive ? "bg-brass text-charcoal" : "bg-brass/20 text-coffee"
+                  className={`absolute -top-2 left-1/2 -translate-x-1/2 rounded-[6px] px-1.5 py-0.5 text-[0.58rem] font-bold leading-none shadow-[0_2px_8px_rgba(0,0,0,0.06)] ${
+                    isActive ? "bg-brass text-charcoal" : "bg-brass/25 text-coffee"
                   }`}
                 >
                   {language === "ar" ? menu.badgeAr : "New"}
                 </span>
               )}
-              <span className={`block text-sm font-bold leading-tight ${isArabic ? "font-body" : ""}`}>
+              <span className={`block text-[0.74rem] font-bold leading-tight xs:text-[0.78rem] sm:text-xs md:text-[0.85rem] ${isArabic ? "font-body" : "font-display"}`}>
                 {language === "ar" ? menu.labelAr : menu.labelEn}
               </span>
-              {menu.badgeAr && language === "ar" && (
-                <span className={`mt-1 block text-xs ${isActive ? "text-ivory/75" : "text-mocha"}`}>
-                  New - Summer Drinks
-                </span>
-              )}
             </motion.button>
           );
         })}

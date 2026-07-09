@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Languages, Menu } from "lucide-react";
+import { Languages, Menu, Home } from "lucide-react";
 import { restaurantData } from "../data/restaurantData.js";
 
 const navKeys = [
@@ -12,6 +12,7 @@ const navKeys = [
 export default function Header({ language, onToggleLanguage }) {
   const copy = restaurantData.ui[language];
   const isArabic = language === "ar";
+  const isMenuPage = typeof window !== "undefined" && window.location.pathname.replace(/\/$/, "") === "/menu";
 
   return (
     <header
@@ -72,14 +73,25 @@ export default function Header({ language, onToggleLanguage }) {
             <span>{copy.languageButton}</span>
           </button>
 
-          <a
-            href="/menu"
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] bg-espresso px-3 text-sm font-semibold text-ivory shadow-soft transition hover:scale-[1.02] hover:bg-charcoal active:scale-[0.98] sm:px-4"
-            aria-label={copy.nav.menu}
-          >
-            <Menu size={17} aria-hidden="true" />
-            <span>{copy.nav.menu}</span>
-          </a>
+          {isMenuPage ? (
+            <a
+              href="/"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] bg-espresso px-3 text-sm font-semibold text-ivory shadow-soft transition hover:scale-[1.02] hover:bg-charcoal active:scale-[0.98] sm:px-4"
+              aria-label={copy.nav.home}
+            >
+              <Home size={17} aria-hidden="true" />
+              <span>{copy.nav.home}</span>
+            </a>
+          ) : (
+            <a
+              href="/menu"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] bg-espresso px-3 text-sm font-semibold text-ivory shadow-soft transition hover:scale-[1.02] hover:bg-charcoal active:scale-[0.98] sm:px-4"
+              aria-label={copy.nav.menu}
+            >
+              <Menu size={17} aria-hidden="true" />
+              <span>{copy.nav.menu}</span>
+            </a>
+          )}
         </div>
       </motion.nav>
     </header>

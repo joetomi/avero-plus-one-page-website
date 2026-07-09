@@ -7,10 +7,10 @@ export default function MenuImageViewer({ menu, language }) {
   return (
     <motion.section
       key={menu.id}
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 12 }}
-      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, scale: 0.97, y: 16 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.97, y: -12 }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       className="mx-auto w-full max-w-[960px]"
       dir={isArabic ? "rtl" : "ltr"}
     >
