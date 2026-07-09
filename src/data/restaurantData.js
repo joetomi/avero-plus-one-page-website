@@ -205,6 +205,50 @@ export const restaurantData = {
       },
       image: "/assets/event-room.jpg",
     },
+    {
+      title: {
+        en: "Terrace Birthdays",
+        ar: "أعياد ميلاد التيراس",
+      },
+      text: {
+        en: "Celebrate your birthdays with a different taste in Avero's Terrace lounge.",
+        ar: "استقبلوا أعياد ميلادكم بذوق مختلف داخل صالة التيراس الراقية في مقهى آڤيرو.",
+      },
+      image: "/assets/posts/post-1/post1_pic2.jpg",
+    },
+    {
+      title: {
+        en: "VIP & Cake Celebrations",
+        ar: "لحظات الـ VIP الخاصة",
+      },
+      text: {
+        en: "Host your beautiful moments inside the VIP lounge with Avero's custom-made cakes.",
+        ar: "كيك آڤيرو جزء من أجمل لحظاتكم داخل صالة الـ VIP. متوفر للحجز والاستفسار.",
+      },
+      image: "/assets/posts/post-2/post2_pic1.jpg",
+    },
+    {
+      title: {
+        en: "Signature Coffee",
+        ar: "رحلة صغيرة لإيطاليا",
+      },
+      text: {
+        en: "A small trip to Italy starts with a sip of our premium, authentic espresso.",
+        ar: "رحلة صغيرة لإيطاليا تبدأ برشفة من قهوتنا المميزة ذات النكهة الغنية.",
+      },
+      image: "/assets/posts/post-4/post4_pic1.jpg",
+    },
+    {
+      title: {
+        en: "Premium Breakfast",
+        ar: "فطور بمستوى ثانٍ",
+      },
+      text: {
+        en: "Experience breakfast on another level with our delicious new additions.",
+        ar: "إضافة جديدة لقائمة آڤيرو، لأن الفطور عندنا دايمًا له مستوى ثاني.",
+      },
+      image: "/assets/posts/post-5/post5_pic1.jpg",
+    },
   ],
   gallery: [
     {
@@ -234,6 +278,55 @@ export const restaurantData = {
         ar: "غرفة الاجتماعات",
       },
       image: "/assets/meeting-room-1.jpg",
+    },
+    {
+      title: {
+        en: "Terrace Lounge Setup",
+        ar: "تنسيق صالة التيراس",
+      },
+      image: "/assets/posts/post-1/post1_pic1.jpg",
+    },
+    {
+      title: {
+        en: "Special Drinks",
+        ar: "مشروباتنا المميزة",
+      },
+      image: "/assets/posts/post-3/post3_pic1.jpg",
+    },
+    {
+      title: {
+        en: "Italian Panettone",
+        ar: "البانيتوني الإيطالي",
+      },
+      image: "/assets/posts/post-7/post7_pic1.jpg",
+    },
+    {
+      title: {
+        en: "Avero Espresso",
+        ar: "قهوة آڤيرو المميزة",
+      },
+      image: "/assets/posts/post-4/post4_pic1.jpg",
+    },
+    {
+      title: {
+        en: "VIP Lounge Celebrations",
+        ar: "احتفالات صالة الـ VIP",
+      },
+      image: "/assets/posts/post-2/post2_pic3.jpg",
+    },
+    {
+      title: {
+        en: "Rich Breakfast Selection",
+        ar: "خيارات الفطور المتنوعة",
+      },
+      image: "/assets/posts/post-6/post6_pic1.jpg",
+    },
+    {
+      title: {
+        en: "Premium Breakfast Dish",
+        ar: "فطور آڤيرو الراقي",
+      },
+      image: "/assets/posts/post-5/post5_pic2.jpg",
     },
   ],
 };
