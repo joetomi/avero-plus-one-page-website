@@ -6,7 +6,7 @@ import MenuSelector from "../components/menu/MenuSelector.jsx";
 import { menuImageData } from "../data/menuImageData.js";
 
 export default function Menu({ language }) {
-  const [activeMenuId, setActiveMenuId] = useState("coffee");
+  const [activeMenuId, setActiveMenuId] = useState("summer");
   const [navDirection, setNavDirection] = useState(1);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);

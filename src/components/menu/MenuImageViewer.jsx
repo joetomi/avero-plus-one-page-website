@@ -41,30 +41,18 @@ export default function MenuImageViewer({ menu, language, direction }) {
       exit="exit"
       variants={variants}
       style={{ perspective: 1200 }}
-      className="mx-auto w-full max-w-[960px] overflow-hidden px-4 sm:px-0"
+      className="mx-auto w-full max-w-[760px] overflow-hidden px-4 sm:px-0"
       dir={isArabic ? "rtl" : "ltr"}
     >
-      <div className="mb-4 flex flex-col items-center text-center gap-3 sm:flex-row sm:items-center sm:justify-between sm:text-start">
-        <div className="flex flex-col items-center sm:items-start">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brass">
-            Avero Plus
-          </p>
-          <h2 className={`mt-1 text-3xl text-espresso sm:text-4xl ${isArabic ? "font-body font-bold" : "font-display"}`}>
-            {title}
-          </h2>
-        </div>
-        {menu.pdf && (
-          <div className="w-full sm:w-auto flex justify-center">
-            <a
-              href={menu.pdf}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-11 w-full sm:w-auto items-center justify-center rounded-[8px] bg-brass px-6 text-sm font-bold text-charcoal shadow-soft transition hover:scale-[1.01] active:scale-[0.98]"
-            >
-              {isArabic ? "عرض PDF الأصلي" : "View Original PDF"}
-            </a>
-          </div>
-        )}
+      {/* Section Editorial Header */}
+      <div className="mb-8 flex flex-col items-center text-center">
+        <span className="text-[0.62rem] font-bold uppercase tracking-[0.25em] text-brass">
+          {isArabic ? "قائمة آڤيرو بلوس" : "Avero Plus Menu"}
+        </span>
+        <h2 className={`mt-2 text-2xl sm:text-3xl text-espresso font-semibold ${isArabic ? "font-body" : "font-display"}`}>
+          {title}
+        </h2>
+        <div className="mt-3.5 h-[1px] w-12 bg-brass/25" />
       </div>
 
       <div className="overflow-hidden rounded-[12px] bg-ivory shadow-soft">
