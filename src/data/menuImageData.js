@@ -54,14 +54,14 @@ export const menuImageCopy = {
   en: {
     badge: "Italian Taste",
     title: "Avero Menu",
-    subtitle: "Choose a menu and browse the original Avero pages in a clean mobile-first view.",
+    subtitle: "Explore Avero’s Italian-inspired food, coffee, breakfast, and seasonal selections.",
     viewPdf: "View Original PDF",
     downloadPdf: "Download PDF",
   },
   ar: {
     badge: "المذاق الإيطالي",
     title: "قائمة Avero Plus",
-    subtitle: "اختر القائمة واستعرض صفحات أفيرو الأصلية بتجربة واضحة ومناسبة للهاتف.",
+    subtitle: "استعرض قوائم آڤيرو المختارة من الأطباق الإيطالية، القهوة، الفطور، والمشروبات الموسمية.",
     viewPdf: "عرض PDF الأصلي",
     downloadPdf: "تحميل PDF",
   },
