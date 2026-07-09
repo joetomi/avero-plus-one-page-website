@@ -6,6 +6,7 @@ export const menuImageData = [
     labelEn: "Summer Drinks",
     pdf: "/assets/menu-pdfs/summer_drinks-finel.pdf",
     pages: ["/assets/menu-images/summer/page-1.webp"],
+    cover: "/assets/menu-covers/summer.jpg",
   },
   {
     id: "food",
@@ -22,6 +23,7 @@ export const menuImageData = [
       "/assets/menu-images/food/page-7.webp",
       "/assets/menu-images/food/page-8.webp",
     ],
+    cover: "/assets/menu-covers/food.jpg",
   },
   {
     id: "coffee",
@@ -36,6 +38,7 @@ export const menuImageData = [
       "/assets/menu-images/coffee/page-5.webp",
       "/assets/menu-images/coffee/page-6.webp",
     ],
+    cover: "/assets/menu-covers/coffee.jpg",
   },
   {
     id: "breakfast",
@@ -47,6 +50,7 @@ export const menuImageData = [
       "/assets/menu-images/breakfast/page-2.webp",
       "/assets/menu-images/breakfast/page-3.webp",
     ],
+    cover: "/assets/menu-covers/breakfast.jpg",
   },
 ];
 

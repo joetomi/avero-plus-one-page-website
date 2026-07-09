@@ -39,7 +39,7 @@ export default function MenuHero({ language }) {
         <h1 className={`mt-3 text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight text-espresso ${
           isArabic ? "font-body" : "font-display"
         }`}>
-          {isArabic ? "اكتشف مذاق آڤيرو" : "Discover the Taste of Avero"}
+          {isArabic ? "اختر قائمتك" : "Choose Your Menu"}
         </h1>
 
         {/* Delicate Luxury Divider */}
@@ -52,8 +52,8 @@ export default function MenuHero({ language }) {
         {/* Curated Subtitle */}
         <p className="mx-auto max-w-2xl text-base leading-relaxed text-coffee/90 sm:text-lg">
           {isArabic
-            ? "تشكيلة مختارة من النكهات الإيطالية، القهوة الحرفية، الفطور، والمشروبات الموسمية."
-            : "A curated selection of Italian flavors, artisanal coffee, breakfast, and seasonal creations."}
+            ? "استكشف قوائم آڤيرو المختارة من الأطباق، القهوة، الفطور، والمشروبات الموسمية."
+            : "Discover Avero’s curated selections of food, coffee, breakfast, and seasonal drinks."}
         </p>
       </motion.div>
     </section>
